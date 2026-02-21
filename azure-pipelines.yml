@@ -17,7 +17,7 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'init'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/BrijendraYadav-dev/Terraform_Monolythic_Infra_Code'
+        workingDirectory: '/BrijendraYadav-dev/Terraform_Monolythic_Infra_Code'
         backendServiceArm: 'Himanshu_service'
         backendAzureRmOverrideSubscriptionID: '925c3861-e9e3-43c1-8a0c-d6faefd4a05a'
         backendAzureRmResourceGroupName: 'Brijendra-RG'
