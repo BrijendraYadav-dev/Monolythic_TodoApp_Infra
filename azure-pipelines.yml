@@ -1,7 +1,7 @@
 trigger: 
 - main
 
-pool: Todo_Microservice_Agent
+pool: Todo_Microservice_Agent_Pool
 
 stages:
 - stage:
