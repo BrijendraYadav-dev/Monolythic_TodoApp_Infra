@@ -13,10 +13,6 @@ stages:
     - task: TerraformInstaller@1
       inputs:
         terraformVersion: 'latest'
-
-- stage:
-  displayName: Init
-  jobs:
   - job:
     displayName: Terraform_Init
     steps:
