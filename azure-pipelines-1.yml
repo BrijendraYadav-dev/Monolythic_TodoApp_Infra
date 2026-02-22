@@ -1,0 +1,8 @@
+trigger:
+- main
+pool: Todo_Microservice_Agent_Pool
+
+steps:
+- task: TerraformInstaller@1
+  inputs:
+    terraformVersion: 'latest'
