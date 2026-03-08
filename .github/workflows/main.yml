@@ -1,0 +1,15 @@
+name: Pahla_Action
+on:
+  push:
+    branches:
+    - 'main'
+    - 'feature/**'
+
+jobs:
+  TerraformInstall:
+    name: TerraformInstall 
+    runs-on: Infra
+    steps:
+    - name: Rocks
+      run: echo Pahla Pyar
+    
