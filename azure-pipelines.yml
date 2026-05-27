@@ -1,7 +1,7 @@
 trigger: 
 - main
 
-pool: Todo_Microservice_Agent_Pool
+pool: Todo_Microservice_Pool
 
 stages:
 - stage:
@@ -18,10 +18,10 @@ stages:
         provider: 'azurerm'
         command: 'init'
         workingDirectory: '/BrijendraYadav-dev/Terraform_Monolythic_Infra_Code'
-        backendServiceArm: 'Himanshu_service'
-        backendAzureRmOverrideSubscriptionID: '925c3861-e9e3-43c1-8a0c-d6faefd4a05a'
+        backendServiceArm: 'TodoApp_Service'
+        backendAzureRmOverrideSubscriptionID: 'fe4b406c-7c69-45b7-8c18-908662c0d423'
         backendAzureRmResourceGroupName: 'Brijendra-RG'
-        backendAzureRmStorageAccountName: 'brijendrastorgae'
-        backendAzureRmContainerName: 'brijendracontainer'
+        backendAzureRmStorageAccountName: 'brijendrastorgaelab'
+        backendAzureRmContainerName: 'brijendracontainerlab'
         backendAzureRmKey: 'terraformstatefile'
 
