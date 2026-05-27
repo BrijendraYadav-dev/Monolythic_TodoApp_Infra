@@ -12,7 +12,7 @@ stages:
     steps:
     - task: TerraformInstaller@1
       inputs:
-        terraformVersion: '1.11.4'
+        terraformVersion: '1.14.4'
     - task: TerraformTask@5
       inputs:
         provider: 'azurerm'
