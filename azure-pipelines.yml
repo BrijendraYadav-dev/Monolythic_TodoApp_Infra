@@ -13,8 +13,14 @@ stages:
     - task: TerraformInstaller@1
       inputs:
         terraformVersion: '1.14.4'
+    
     - task: TerraformTask@5
       inputs:
         provider: 'azurerm'
         command: 'init'
+        backendServiceArm: 'TodoApp_Service'
+        backendAzureRmResourceGroupName: 'Brijendra_RG'
+        backendAzureRmStorageAccountName: 'brijendrastoragelab'
+        backendAzureRmContainerName: 'brijendracontainerlab'
+        backendAzureRmKey: 'terraform.tfstate'
         
