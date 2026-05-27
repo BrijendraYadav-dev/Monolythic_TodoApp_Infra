@@ -17,11 +17,4 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'init'
-        workingDirectory: '/BrijendraYadav-dev/Terraform_Monolythic_Infra_Code'
-        backendServiceArm: 'TodoApp_Service'
-        backendAzureRmOverrideSubscriptionID: 'fe4b406c-7c69-45b7-8c18-908662c0d423'
-        backendAzureRmResourceGroupName: 'Brijendra-RG'
-        backendAzureRmStorageAccountName: 'brijendrastorgaelab'
-        backendAzureRmContainerName: 'brijendracontainerlab'
-        backendAzureRmKey: 'terraformstatefile'
-
+        
