@@ -1,0 +1,25 @@
+trigger: 
+- main
+
+pool: Todo_Microservice_Pool
+
+stages:
+- stage:
+  displayName: Build
+  jobs:
+  - job:
+    displayName: Terraform_Install
+    steps:
+    - task: TerraformInstaller@1
+      inputs:
+        terraformVersion: '1.14.4'
+    
+    - task: TerraformTask@5
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        backendServiceArm: 'TodoApp_Service'
+        backendAzureRmResourceGroupName: 'Brijendra_RG'
+        backendAzureRmStorageAccountName: 'brijendrastoragelab'
+        backendAzureRmContainerName: 'brijendracontainerlab'
+        backendAzureRmKey: 'terraform.tfstate'
