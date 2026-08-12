@@ -1,41 +1,22 @@
-trigger: 
-- main
+trigger: main
 
-pool: Todo_Microservice_Pool
+pool: Docker-VM_Pool
 
 stages:
-- stage:
-  displayName: Build
-  jobs:
-  - job:
-    displayName: Terraform_Install
-    steps:
-    - task: TerraformInstaller@1
-      inputs:
-        terraformVersion: '1.14.4'
-    
-    - task: TerraformTask@5
-      inputs:
-        provider: 'azurerm'
-        command: 'init'
-        backendServiceArm: 'TodoApp_Service'
-        backendAzureRmResourceGroupName: 'Brijendra_RG'
-        backendAzureRmStorageAccountName: 'brijendrastoragelab'
-        backendAzureRmContainerName: 'brijendracontainerlab'
-        backendAzureRmKey: 'terraform.tfstate'
-
-
-  - job:
-    displayName: Plan
-    steps:
-
-    - task: TerraformTask@5
-      inputs:
-        provider: 'azurerm'
-        command: 'validate'
-    - task: TerraformTask@5
-      inputs:
-        provider: 'azurerm'
-        command: 'plan'
-        environmentServiceNameAzureRM: 'TodoApp_Service'
-        
+  - stage: Terraform_Init
+    displayName: Terraform Init
+    jobs:
+    - job: 
+      displayName: Init
+      continueOnError: true
+      steps:
+      - task: TerraformTask@5
+        inputs:
+          provider: 'azurerm'
+          command: 'init'
+          workingDirectory: '$(System.DefaultWorkingDirectory)/Environment/Dev'
+          backendServiceArm: 'Docker-VM-Connection'
+          backendAzureRmResourceGroupName: 'rg-terraform-state'
+          backendAzureRmStorageAccountName: 'bkstterraformstate'
+          backendAzureRmContainerName: 'tfstate'
+          backendAzureRmKey: 'preprod.tfstate'
