@@ -1,14 +1,29 @@
+
 name: Terraform Pipeline
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: terraform-plan
+  cancel-in-progress: false
 
 jobs:
   terraform:
-    name: Terraform Init and Plan
-    runs-on: Infra
+    name: Terraform Init, Validate and Plan
+    runs-on: [self-hosted, Infra]
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: .
+
+    env:
+      TF_IN_AUTOMATION: true
+      TF_INPUT: false
 
     steps:
       - name: Checkout Repository
@@ -18,14 +33,21 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.6.6
+          terraform_wrapper: false
+
+      - name: Verify Terraform
+        run: |
+          terraform version
+          git status --short
+
+      - name: Terraform Format Check
+        run: terraform fmt -check -recursive
 
       - name: Terraform Init
-        run: terraform init
-        
+        run: terraform init -input=false
+
       - name: Terraform Validate
         run: terraform validate
-         
-      - name: Terraform Plan
-        run: terraform plan
 
-    
+      - name: Terraform Plan
+        run: terraform plan -input=false -no-color
